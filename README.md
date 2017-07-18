@@ -42,7 +42,36 @@ $(".datalist").datalist({
 option:
 - width: the select and datalist width.  etc. 100% \ 250px ......
 - default: the select show a value when the select init, if use first value just write '__FIRST__', other value direct be use.
-- 
+
+
+### example:
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	classmate:
+	<select class="datalist" name="classmate">
+		<option>jone</option>
+		<option>jack</option>
+		<option>phili</option>
+		<option>cool</option>
+	</select>
+	<script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="./jquery.datalist.js"></script>
+	<script type="text/javascript">
+        $(".datalist").datalist({
+            width   : '300px',
+            default : '__FIRST__'
+        });
+	</script>
+</body>
+</html>
+```
 
 
 ------
