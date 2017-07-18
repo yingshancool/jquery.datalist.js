@@ -166,7 +166,7 @@
                 selectorEditInput.className      = 'selector_edit_input';
 
                 var time                         = 0;
-                selectorEditInput.onkeyup        = function(event) {
+                selectorEditInput.onkeydown        = function(event) {
                     switch(event.keyCode) {
                         case 13: // 回车
                             var selectorItemList = $(this).parent().next('.selector_item_list');
