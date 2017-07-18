@@ -3,19 +3,19 @@
         "datalist": function (option) {
             option = option == undefined?{}:option;
 
-            window.addEventListener("keydown", function(e) {
-                switch(e.keyCode) {
-                    // case 32:
-                    case 37:   // 左
-                    case 38:   // 上
-                    case 39:   // 右
-                    case 40:   // 下
-                        e.preventDefault();
-                    break;     // Space
-                    default:
-                    break;     // do not block other keys
-                }
-            }, false);
+            // window.addEventListener("keydown", function(e) {
+            //     switch(e.keyCode) {
+            //         // case 32:
+            //         case 37:   // 左
+            //         case 38:   // 上
+            //         case 39:   // 右
+            //         case 40:   // 下
+            //             e.preventDefault();
+            //         break;     // Space
+            //         default:
+            //         break;     // do not block other keys
+            //     }
+            // }, false);
 
             $(document).click(function() {
                 $(".selector_item_list").hide();
@@ -50,6 +50,8 @@
                                             throw selectorItemList.find('li:visible:eq(' + last + ')');
                                         }
                                     }
+
+                                    // throw selectorItemList.find('li:visible:eq(' + last + ')');
                                 });
                             } catch(e) {
                                 targetLi = e;
@@ -165,18 +167,14 @@
                 selectorEditInput.setAttribute('type', 'text');
                 selectorEditInput.className      = 'selector_edit_input';
 
-                var time                         = 0;
-                selectorEditInput.onkeydown        = function(event) {
+                var time = 0;
+                selectorEditInput.onkeydown      = function(event) {
                     switch(event.keyCode) {
                         case 13: // 回车
-                            var selectorItemList = $(this).parent().next('.selector_item_list');
-                            this.value = selectorItemList.find('.selected').html();
-                            console.log(selectorItemList.find('.selected').html());
-                            selectorItemList.hide();
-                        break;
                         case 37: // 左
-                        case 38: // 上
                         case 39: // 右
+                        break;
+                        case 38: // 上
                         case 40: // 下
                             var selectorItemList = $(this).parent().next('.selector_item_list');
                             if (selectorItemList.children('li:visible').length > 0) {
@@ -191,8 +189,25 @@
                             }
                         break;
                         default:
-                            // $(this).focusEnd();
+                        break;
+                    }
+                }
 
+                selectorEditInput.onkeyup        = function(event) {
+                    switch(event.keyCode) {
+                        case 13: // 回车
+                            var selectorItemList = $(this).parent().next('.selector_item_list');
+                            var value            = selectorItemList.find('.selected').html();
+                            this.value           = value == undefined?this.value:value;
+                            selectorItemList.hide();
+                        break;
+                        case 37: // 左
+                        case 38: // 上
+                        case 39: // 右
+                        case 40: // 下
+                        break;
+                        default:
+                            // 输入并正则
                             var selectorItemList = $(this).parent().next('.selector_item_list');
                             selectorItemList.show();
                             selectorItemList.children("li").hide();
@@ -208,6 +223,10 @@
                                     }
                                 }
                             });
+
+                            if (selectorItemList.children('li:visible').length <= 0) {
+                                selectorItemList.hide();
+                            }
                         break;
                     }
                 }
@@ -245,6 +264,7 @@
                 }
 
                 selectorDropdownButton.onclick   = function(event) {
+                    console.log('xxxxxx');
                     $(".selector_item_list").hide();
                     var selector_item_list = $(this).parent().next();
                     selector_item_list.toggle();
@@ -254,7 +274,7 @@
 
                 var icon                         = document.createElement('i');
                 icon.className                   = 'icon iconfont';
-                icon.textContent                 = '▼';
+                icon.textContent                 = '';
 
                 selectorDropdownButton.insertBefore(icon,         null);
                 selectorEdit.insertBefore(selectorEditInput,      null);
