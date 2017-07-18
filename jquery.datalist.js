@@ -244,7 +244,7 @@
                     }
                 }
 
-                selectorDropdownButton.onclick   = function() {
+                selectorDropdownButton.onclick   = function(event) {
                     $(".selector_item_list").hide();
                     var selector_item_list = $(this).parent().next();
                     selector_item_list.toggle();
