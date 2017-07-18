@@ -274,7 +274,7 @@
 
                 var icon                         = document.createElement('i');
                 icon.className                   = 'icon iconfont';
-                icon.textContent                 = '';
+                icon.textContent                 = '▼';
 
                 selectorDropdownButton.insertBefore(icon,         null);
                 selectorEdit.insertBefore(selectorEditInput,      null);
